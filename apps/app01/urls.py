@@ -2,10 +2,10 @@ from fastapi import APIRouter
 
 user = APIRouter()
 
-@user.post("/user/login")
+@user.post("/login")
 def user_login():
     return {"user": "login"}
 
-@user.post("/user/register")
+@user.post("/register")
 def user_register():
     return {"user": "register"}
