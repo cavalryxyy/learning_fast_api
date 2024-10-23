@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 
-function Home() {
+function Home({ setUserRole }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [newAccount, setNewAccount] = useState('');
   const [adminLogin, setAdminLogin] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    if (adminLogin === 'xyy@xyy.cc') {
+      setUserRole('admin');
+      alert('Admin logged in successfully!');
+    } else {
+      setUserRole('user');
+      alert('User logged in successfully!');
+    }
   };
 
   return (
@@ -31,15 +36,6 @@ function Home() {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="newAccount">Register New Account:</label>
-          <input
-            type="text"
-            id="newAccount"
-            value={newAccount}
-            onChange={(e) => setNewAccount(e.target.value)}
           />
         </div>
         <div>
