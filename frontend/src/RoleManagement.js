@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function RoleManagement() {
   const [users, setUsers] = useState([
@@ -7,10 +8,25 @@ function RoleManagement() {
     { username: 'admin', role: 'admin' }
   ]);
 
-  const handleRoleChange = (username, newRole) => {
-    setUsers(users.map(user => 
-      user.username === username ? { ...user, role: newRole } : user
-    ));
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/auth/users');
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
+
+  const handleRoleChange = async (username, newRole) => {
+    try {
+      await axios.put('http://localhost:8080/auth/users', {
+        username,
+        new_role: newRole,
+      });
+      fetchUsers();  // Refresh the user list
+    } catch (error) {
+      console.error('Error updating user role:', error);
+    }
   };
 
   return (
