@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import { useUser } from './UserContext';
 
-function Home({ setUserRole }) {
+function Home() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [adminLogin, setAdminLogin] = useState('');
+  const { login } = useUser();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (adminLogin === 'xyy@xyy.cc') {
-      setUserRole('admin');
+      login(username, 'admin');
       alert('Admin logged in successfully!');
     } else {
-      setUserRole('user');
+      login(username, 'user');
       alert('User logged in successfully!');
     }
   };
