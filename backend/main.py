@@ -22,6 +22,7 @@ calc_router = APIRouter()
 @calc_router.post("/calculate")
 def calculate(request: CalculationRequest):
     result = request.option1 + request.option2 + request.option3
+    print(f"Calculation result: {result}")  # Add this line
     return {"result": result}
 
 app.include_router(calc_router, prefix="/calc", tags=["calc"])

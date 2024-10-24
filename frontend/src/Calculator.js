@@ -9,14 +9,16 @@ function Calculator() {
 
   const handleCalculate = async () => {
     try {
+      console.log('Sending request with:', { option1, option2, option3 });
       const response = await axios.post('http://localhost:8080/calc/calculate', {
         option1: parseInt(option1),
         option2: parseInt(option2),
         option3: parseInt(option3),
       });
+      console.log('Response received:', response.data);
       setResult(response.data.result);
     } catch (error) {
-      console.error('Error calculating result:', error);
+      console.error('Error calculating result:', error.response ? error.response.data : error.message);
     }
   };
 
