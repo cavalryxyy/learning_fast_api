@@ -1,7 +1,10 @@
 
 my_project/
 ├── backend/
-│   ├── main.py
+│   ├── uilts/
+│   ├── calculator.py
+│   ├── models.py
+│   └── users.py
 ├── frontend/
 │   ├── public/
 │   │   ├── index.html
@@ -9,6 +12,7 @@ my_project/
 │   │   ├── App.js
 │   │   ├── AdminPage.js
 │   │   ├── index.css
+│   │   ├── Calculator.css
 │   │   ├── RoleManagement.js
 │   │   ├── UserContext.js
 │   │   ├── UserPage.js
@@ -16,6 +20,6 @@ my_project/
 │   │   ├── Home.js
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── yarn.lock 
+│   └── yarn.lock 
 ├── .gitignore
 └── README.md
