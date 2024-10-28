@@ -9,18 +9,31 @@ function Calculator() {
 
   const handleCalculate = async () => {
     try {
-      console.log('Sending request with:', { option1, option2, option3 });
       const response = await axios.post('http://localhost:8080/calc/calculate', {
         option1: parseInt(option1),
         option2: parseInt(option2),
         option3: parseInt(option3),
       });
-      console.log('Response received:', response.data);
-      setResult(response.data.result);
+      setResult(response.data.weighted_average);
     } catch (error) {
-      console.error('Error calculating result:', error.response ? error.response.data : error.message);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Error response data:', error.response.data);
+        console.error('Error response status:', error.response.status);
+        console.error('Error response headers:', error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('Error request:', error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error message:', error.message);
+      }
+      console.error('Error config:', error.config);
     }
   };
+  
+  
 
   return (
     <div>
@@ -59,7 +72,7 @@ function Calculator() {
         </label>
       </div>
       <button onClick={handleCalculate}>Calculate</button>
-      {result !== null && <div>Result: {result}</div>}
+      {result !== null && <div>Weighted Average: {result}</div>}
     </div>
   );
 }

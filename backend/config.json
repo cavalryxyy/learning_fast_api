@@ -1,0 +1,15 @@
+{
+    "weights": {
+      "calculation1": {
+        "weight1": 0.2,
+        "weight2": 0.3,
+        "weight3": 0.5
+      },
+      "calculation2": {
+        "weight1": 0.4,
+        "weight2": 0.4,
+        "weight3": 0.2
+      }
+    }
+  }
+  

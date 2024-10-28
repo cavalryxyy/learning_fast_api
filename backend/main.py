@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.users import router as user_router  # Use absolute import
 from backend.models import CalculationRequest  # Import the CalculationRequest model
 from fastapi import APIRouter
+from backend.calculator import calculate_weighted_average
 
 app = FastAPI()
 
@@ -20,10 +21,11 @@ app.include_router(user_router, prefix="/auth", tags=["auth"])
 calc_router = APIRouter()
 
 @calc_router.post("/calculate")
-def calculate(request: CalculationRequest):
-    result = request.option1 + request.option2 + request.option3
+def calculate_endpoint(request: CalculationRequest):
+    print("Received request:", request.dict())  # Log the received request as a dictionary
+    result = calculate_weighted_average(request)
     print(f"Calculation result: {result}")  # Add this line
-    return {"result": result}
+    return result  # Use the new function
 
 app.include_router(calc_router, prefix="/calc", tags=["calc"])
 
