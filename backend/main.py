@@ -9,7 +9,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Adjust this to your frontend URL
+    allow_origins=[
+        "http://localhost:3000",  # Local development URL
+        "https://witty-field-03a92d503.5.azurestaticapps.net"  # Azure Static Web App URL
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
