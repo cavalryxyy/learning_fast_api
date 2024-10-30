@@ -1,3 +1,6 @@
+# Project Structure
+
+```plaintext
 
 my_project/
 ├── backend/
